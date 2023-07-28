@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Meta -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Red Hot Vending</title>
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Styles -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          fontFamily: {
+            sans: ["Poppins", "system-ui", "sans-serif"],
+          },
+          extend: {
+            backgroundImage: {
+              "gradient-radial":
+                "radial-gradient(circle, var(--tw-gradient-stops))",
+            },
+          },
+        },
+      };
+    </script>
+    <style type="text/tailwindcss">
+      @layer base {
+        html {
+          @apply h-full;
+        }
+        body {
+          @apply min-h-full;
+          @apply flex flex-col;
+        }
+        main {
+          @apply flex-grow;
+        }
+      }
+      @layer components {
+        .page-width {
+          @apply w-full max-w-[1920px] mx-auto px-[22px];
+        }
+      }
+      @layer utilities {
+        .box-link::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    </style>
+
+    <!-- JavaScript -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/@alpinejs/focus@3.x.x/dist/cdn.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.1/dist/cdn.min.js"
+    ></script>
+    <script>
+      document.addEventListener("alpine:init", () => {
+        console.log("Alpine.js loaded!!");
+      });
+    </script>
+  </head>
+  <body
+    class="bg-[#000000] bg-gradient-to-r from-[#000000] to-[#8A2334] text-[#ffffff]"
+    x-data=""
+  >
+    <!-- Header -->
+    <header>
+      <div class="w-full pr-[134px]">
+        <div class="page-width h-[68px] flex items-center justify-end">
+          <div>Call: 0800 413 559 or Email: coffee@redhotvending.co.uk</div>
+        </div>
+      </div>
+      <div
+        class="bg-[#a80a25] border-t border-b border-t-[#1a1a1a] border-b-[#530513]"
+      >
+        <div class="page-width py-[22px] flex items-center">
+          <div class="ml-[78px] mr-[130px]">
+            <img
+              class="block w-[234px] h-auto"
+              src="./VENDING-copy.png"
+              alt=""
+            />
+          </div>
+          <div class="block lg:hidden ml-auto">
+            <button
+              class="flex items-center justify-center w-[32px] h-[32px]"
+              type="button"
+              @click="
+              $dispatch('toggle-mobile-nav');
+            "
+            >
+              <span class="sr-only"> Open menu </span>
+              <svg
+                class=""
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="20"
+                viewBox="0 0 448 512"
+                fill="currentColor"
+              >
+                <path
+                  d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"
+                />
+              </svg>
+            </button>
+          </div>
+          <nav class="hidden lg:block flex-grow mr-[16px]" aria-label="Primary">
+            <ul class="w-full flex items-center justify-between">
+              <li
+                class="relative [&_ul]:invisible [&_ul]:opacity-0 [&_ul]:translate-y-[16px] [&_ul]:hover:visible [&_ul]:hover:opacity-100 [&_ul]:hover:translate-y-0 [&_ul]:transition-[visibility,opacity,transform] [&_ul]:duration-300 [&_svg]:hover:rotate-90 [&_svg]:transition-[transform] [&_svg]:duration-300"
+              >
+                <a
+                  class="flex items-center p-[16px] leading-none font-bold"
+                  href="#"
+                >
+                  <span class=""> Vending Systems </span>
+                  <svg
+                    class="ml-[6px]"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="8"
+                    height="13"
+                    viewBox="0 0 320 512"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
+                    />
+                  </svg>
+                </a>
+                <ul
+                  class="absolute top-full left-0 z-[10] w-[200px] py-[8px] bg-[#ffffff] text-[#a80a25] rounded-[8px] shadow-lg"
+                >
+                  <li>
+                    <a
+                      class="block px-[16px] py-[8px] font-medium hover:text-[#ffffff] hover:bg-[#a80a25] transition duration-300"
+                      href="#"
+                    >
+                      Link One
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      class="block px-[16px] py-[8px] font-medium hover:text-[#ffffff] hover:bg-[#a80a25] transition duration-300"
+                      href="#"
+                    >
+                      Link Two
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      class="block px-[16px] py-[8px] font-medium hover:text-[#ffffff] hover:bg-[#a80a25] transition duration-300"
+                      href="#"
+                    >
+                      Link Three
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li
+                class="relative [&_ul]:invisible [&_ul]:opacity-0 [&_ul]:translate-y-[16px] [&_ul]:hover:visible [&_ul]:hover:opacity-100 [&_ul]:hover:translate-y-0 [&_ul]:transition-[visibility,opacity,transform] [&_ul]:duration-300 [&_svg]:hover:rotate-90 [&_svg]:transition-[transform] [&_svg]:duration-300"
+              >
+                <a
+                  class="flex items-center p-[16px] leading-none font-bold"
+                  href="#"
+                >
+                  <span class=""> Refill Products </span>
+                  <svg
+                    class="ml-[6px]"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="8"
+                    height="13"
+                    viewBox="0 0 320 512"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
+                    />
+                  </svg>
+                </a>
+                <ul
+                  class="absolute top-full left-0 z-[10] w-[200px] py-[8px] bg-[#ffffff] text-[#a80a25] rounded-[8px] shadow-lg"
+                >
+                  <li>
+                    <a
+                      class="block px-[16px] py-[8px] font-medium hover:text-[#ffffff] hover:bg-[#a80a25] transition duration-300"
+                      href="#"
+                    >
+                      Link One
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      class="block px-[16px] py-[8px] font-medium hover:text-[#ffffff] hover:bg-[#a80a25] transition duration-300"
+                      href="#"
+                    >
+                      Link Two
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a
+                  class="flex items-center p-[16px] leading-none font-bold"
+                  href="#"
+                >
+                  <span class=""> Case Studies </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="flex items-center p-[16px] leading-none font-bold"
+                  href="#"
+                >
+                  <span class=""> Blog </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="flex items-center p-[16px] leading-none font-bold"
+                  href="#"
+                >
+                  <span class=""> Contact Us </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="flex items-center p-[25px] bg-[#ffffff] text-[#a80a25] rounded-[9px] leading-none font-bold uppercase whitespace-nowrap"
+                  href="#"
+                >
+                  Special Offers
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <main>
+      <!-- Hero -->
+      <section class="w-full">
+        <div class="page-width flex flex-wrap">
+          <div class="w-full md:w-1/2 pt-[70px] pb-[70px]">
+            <img
+              class="block w-full max-w-[630px] h-auto mb-[38px]"
+              src="https://placehold.co/630x236?text=Offers"
+              alt=""
+            />
+            <div class="w-full max-w-[630px] pl-[16px]">
+              <p class="text-[42px] font-medium">
+                Take a look at our range of
+                <span class="text-[#A60A25] font-bold">Red Hot Vending</span>
+                coffee machines, need help to choose then please get in touch,
+                0800 413 559
+              </p>
+            </div>
+          </div>
+          <div class="w-full md:w-1/2 pt-[40px] pb-[68px] self-center">
+            <img
+              class="block w-full h-auto mx-auto"
+              src="https://placehold.co/591x454?text=Service"
+              alt=""
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Services -->
+      <section class="py-[18px] bg-[#0C0C0C]">
+        <ul
+          class="page-width grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[22px] lg:gap-x-[40px] lg:gap-y-[48px]"
+        >
+          <li class="relative text-center">
+            <img
+              class="block w-full h-auto mb-[24px] border border-[#000000] rounded-[8px]"
+              src="https://placehold.co/591x454?text=Service"
+              alt=""
+            />
+            <h2 class="flex items-center justify-center mb-[20px]">
+              <a class="box-link text-[20px] leading-none font-bold" href="#">
+                Bean to Cup Machines
+              </a>
+              <svg
+                class="ml-[16px] text-[#D10A2C]"
+                xmlns="http://www.w3.org/2000/svg"
+                width="11"
+                height="17"
+                viewBox="0 0 320 512"
+                fill="currentColor"
+              >
+                <path
+                  d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
+                />
+              </svg>
+            </h2>
+            <p class="text-[14px]">
+              Vending systems to suit all requirements and budgets
+            </p>
+          </li>
+          <li class="relative text-center">
+            <img
+              class="block w-full h-auto mb-[24px] border border-[#000000] rounded-[8px]"
+              src="https://placehold.co/591x454?text=Service"
+              alt=""
+            />
+            <h2 class="flex items-center justify-center mb-[20px]">
+              <a class="box-link text-[20px] leading-none font-bold" href="#">
+                Free Vend Machines
+              </a>
+              <svg
+                class="ml-[16px] text-[#D10A2C]"
+                xmlns="http://www.w3.org/2000/svg"
+                width="11"
+                height="17"
+                viewBox="0 0 320 512"
+                fill="currentColor"
+              >
+                <path
+                  d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
+                />
+              </svg>
+            </h2>
+            <p class="text-[14px]">
+              Full range of refill products for use in vending machines
+            </p>
+          </li>
+          <li class="relative text-center">
+            <img
+              class="block w-full h-auto mb-[24px] border border-[#000000] rounded-[8px]"
+              src="https://placehold.co/591x454?text=Service"
+              alt=""
+            />
+            <h2 class="flex items-center justify-center mb-[20px]">
+              <a class="box-link text-[20px] leading-none font-bold" href="#">
+                Vending Coffee Supplies
+              </a>
+              <svg
+                class="ml-[16px] text-[#D10A2C]"
+                xmlns="http://www.w3.org/2000/svg"
+                width="11"
+                height="17"
+                viewBox="0 0 320 512"
+                fill="currentColor"
+              >
+                <path
+                  d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
+                />
+              </svg>
+            </h2>
+            <p class="text-[14px]">
+              Full range of refill products for use in vending machines
+            </p>
+          </li>
+          <li class="relative text-center">
+            <img
+              class="block w-full h-auto mb-[24px] border border-[#000000] rounded-[8px]"
+              src="https://placehold.co/591x454?text=Service"
+              alt=""
+            />
+            <h2 class="flex items-center justify-center mb-[20px]">
+              <a class="box-link text-[20px] leading-none font-bold" href="#">
+                Vending Snack Machines
+              </a>
+              <svg
+                class="ml-[16px] text-[#D10A2C]"
+                xmlns="http://www.w3.org/2000/svg"
+                width="11"
+                height="17"
+                viewBox="0 0 320 512"
+                fill="currentColor"
+              >
+                <path
+                  d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
+                />
+              </svg>
+            </h2>
+            <p class="text-[14px]">
+              Vending systems to suit all requirements and budgets
+            </p>
+          </li>
+          <li class="relative text-center">
+            <img
+              class="block w-full h-auto mb-[24px] border border-[#000000] rounded-[8px]"
+              src="https://placehold.co/591x454?text=Service"
+              alt=""
+            />
+            <h2 class="flex items-center justify-center mb-[20px]">
+              <a class="box-link text-[20px] leading-none font-bold" href="#">
+                Water Coolers
+              </a>
+              <svg
+                class="ml-[16px] text-[#D10A2C]"
+                xmlns="http://www.w3.org/2000/svg"
+                width="11"
+                height="17"
+                viewBox="0 0 320 512"
+                fill="currentColor"
+              >
+                <path
+                  d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
+                />
+              </svg>
+            </h2>
+            <p class="text-[14px]">
+              Full range of refill products for use in vending machines
+            </p>
+          </li>
+          <li class="relative text-center">
+            <img
+              class="block w-full h-auto mb-[24px] border border-[#000000] rounded-[8px]"
+              src="https://placehold.co/591x454?text=Service"
+              alt=""
+            />
+            <h2 class="flex items-center justify-center mb-[20px]">
+              <a class="box-link text-[20px] leading-none font-bold" href="#">
+                Vending Machine Servicing
+              </a>
+              <svg
+                class="ml-[16px] text-[#D10A2C]"
+                xmlns="http://www.w3.org/2000/svg"
+                width="11"
+                height="17"
+                viewBox="0 0 320 512"
+                fill="currentColor"
+              >
+                <path
+                  d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
+                />
+              </svg>
+            </h2>
+            <p class="text-[14px]">
+              Routine maintenance of on site support, get intouch
+            </p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Delivery -->
+      <section class="bg-[#0C0C0C]">
+        <div class="page-width flex flex-wrap">
+          <div
+            class="w-full md:w-[40%] pt-[155px] pb-[124px] pl-[38px] pr-[142px]"
+          >
+            <h2 class="w-full mb-[60px] text-[36px] font-bold uppercase">
+              Yorkshire values delivered nationwide.
+            </h2>
+            <p class="text-[20px]">
+              Some content in here about the exceptional service and the reach.
+              May switch this for the Yorkshire Beans idea as we look at
+              generating more work locally.
+            </p>
+            <div class="text-right">
+              <a
+                class="inline-flex items-center mt-[78px] px-[66px] py-[25px] bg-[#ffffff] text-[#a80a25] rounded-[9px] leading-none font-bold uppercase whitespace-nowrap"
+                href="#"
+              >
+                Take a look
+              </a>
+            </div>
+          </div>
+          <div class="w-full md:w-[60%] md:self-end">
+            <img
+              class="block w-full h-auto"
+              src="https://placehold.co/1144x610?text=Delivery"
+              alt=""
+            />
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="page-width flex flex-wrap">
+        <div class="w-full flex flex-wrap pt-[124px] pb-[124px]">
+          <div class="w-full md:w-[50%] pl-[38px]">
+            <p class="text-[32px] font-bold pb-[35px]">
+              <span class="text-[#A60A25]">Red </span>Hot Vending
+            </p>
+            <div class="flex flex-col text-[20px]">
+              <p>7 Hawthorne Ave Ind Est,</p>
+              <p>Hawthorne Avenue,</p>
+              <p>Hull, East Yotkshire,</p>
+              <p>Hu3 5 JB</p>
+              <p>Tel: 01482 211127</p>
+              <p>email: coffee@redhotvending.co.uk</p>
+            </div>
+          </div>
+          <div class="w-full md:w-[25%] pl-[38px]">
+            <p class="text-[32px] font-bold pb-[35px]">MACHINES</p>
+            <div class="flex flex-col text-[18px]">
+              <p>Ben to cup</p>
+              <p>Free to vend</p>
+              <p>Coin opporated vend</p>
+              <p>Cashless vending</p>
+              <p>Snack vending</p>
+              <p>Hot/Cold drink vend</p>
+              <p>Others?</p>
+            </div>
+          </div>
+          <div class="w-full md:w-[25%] pl-[38px]">
+            <p class="text-[32px] font-bold pb-[35px]">SERVICES</p>
+            <div class="flex flex-col text-[18px]">
+              <p>Machine Sales</p>
+              <p>Machine rentals</p>
+              <p>Machine services</p>
+              <p>Product Refills</p>
+              <p>Others?</p>
+            </div>
+          </div>
+        </div>
+        <div class="w-full flex flex-row justify-between pl-[38px] pb-[20px]">
+          <p class="mt-auto">Terms | Privacy | Delivery | Cookies | Others?</p>
+          <img
+            class="block w-full max-w-[200px] h-auto"
+            src="https://placehold.co/200x80?text=Getextra"
+            alt=""
+          />
+        </div>
+      </div>
+    </footer>
+
+    <!-- Mobile Nav -->
+    <div
+      class="fixed inset-0 w-full h-full backdrop-blur-[2px] bg-[#000000]/50 invisible opacity-0 transition-[visibility,opacity] duration-300 delay-300"
+      x-data="{
+      visible: false
+    }"
+      :class="{
+      '!visible !opacity-100 !delay-0': visible
+    }"
+      @click="visible = false"
+      @toggle-mobile-nav.window="visible = !visible"
+      @close-mobile-nav.window="visible = false"
+      @keyup.esc.window="visible = false"
+      x-trap="visible"
+    >
+      <div
+        class="fixed inset-y-0 right-0 w-full max-w-[375px] h-full bg-[#000000] translate-x-full transition-[transform] duration-300 delay-0"
+        :class="{
+        '!translate-x-0 !opacity-100 !delay-300': visible
+      }"
+        @click.stop=""
+      >
+        <div class="flex items-center p-[22px]">
+          <span class=""> Menu </span>
+          <button
+            class="flex items-center justify-center w-[32px] h-[32px] ml-auto"
+            type="button"
+            @click="$dispatch('close-mobile-nav')"
+          >
+            <span class="sr-only"> Close menu </span>
+            <svg
+              class=""
+              xmlns="http://www.w3.org/2000/svg"
+              width="15"
+              height="20"
+              viewBox="0 0 384 512"
+              fill="currentColor"
+            >
+              <path
+                d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="">Mobile Nav</div>
+      </div>
+    </div>
+  </body>
+</html>
